@@ -62,7 +62,7 @@ def parse_options() -> argparse.ArgumentParser:
     return parser
 
 
-def get_input(text):
+def get_input(text) -> str:
     """
     Small function that takes input and returns it. This is mainly so that we can do testing
     """
@@ -70,9 +70,18 @@ def get_input(text):
     return input(text)
 
 
-def main() -> str:
+def main() -> None:
     """
-    The main application
+    The main application. The steps it will take:
+        - Parse options for API key and location
+        - Pull environment variables for API key if nothing is provided
+        - Asks for a location if location is not provided
+        - Some field validation
+            - Value exists
+            - Is of the proper size
+            - Is only letters
+        - Reorganizes fields to be used with API and calls the API
+        - Parses out temperature and returns to end user
     """
     # Parse the options passed
     parser = parse_options()
